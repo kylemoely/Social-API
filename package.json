@@ -1,0 +1,17 @@
+{
+  "name": "social-api",
+  "version": "1.0.0",
+  "description": "Example Backend API for social network featuring usernames and passwords, user posts, friends lists, and reactions to friends' posts",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^7.0.2"
+  }
+}
