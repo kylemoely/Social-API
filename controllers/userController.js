@@ -14,7 +14,7 @@ module.exports = {
     // get one user
     async getSingleUser(req, res) {
         try{
-            const user = await User.findOne({ _id: req.params.userid }).select('thoughts friends');
+            const user = await User.findOne({ _id: req.params.userId }).select('thoughts friends');
             if(user){
                 res.status(200).json(user);
             } else{
@@ -46,7 +46,7 @@ module.exports = {
     async updateUser(req, res) {
         try{
             const user = await User.findOneAndUpdate(
-                { _id: req.params.userid },
+                { _id: req.params.userId },
                 { $set: req.body },
                 { runValidators: true, new: true }
             );
@@ -64,7 +64,7 @@ module.exports = {
 
     async deleteUser(req, res) {
         try{
-            const user = await User.findOneAndDelete({ _id: req.params.userid });
+            const user = await User.findOneAndDelete({ _id: req.params.userId });
             if(user){
                 res.status(200).json(user);
             } else{
@@ -80,7 +80,7 @@ module.exports = {
     async addFriend(req, res){
         try{
             const user = await User.findOneAndUpdate(
-                { _id: req.params.userid },
+                { _id: req.params.userId },
                 { $addToSet: { friends: req.params.friendId } }
             );
             if(user){
@@ -98,7 +98,7 @@ module.exports = {
     async removeFriend(req, res){
         try{
             const user = await User.findOneAndUpdate(
-                { _id: req.params.userid },
+                { _id: req.params.userId },
                 { $pull: { friends: req.params.friendId } }
             );
             if(user){
