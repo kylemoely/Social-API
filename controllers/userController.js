@@ -14,7 +14,7 @@ module.exports = {
     // get one user
     async getSingleUser(req, res) {
         try{
-            const user = await User.findOne({ _id: req.params.userId }).select('thoughts friends');
+            const user = await User.findOne({ _id: req.params.userId }).select('-__v');
             if(user){
                 res.status(200).json(user);
             } else{
@@ -81,7 +81,8 @@ module.exports = {
         try{
             const user = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $addToSet: { friends: req.params.friendId } }
+                { $addToSet: { friends: req.params.friendId } },
+                { new: true }
             );
             if(user){
                 res.status(200).json(user);
@@ -99,7 +100,8 @@ module.exports = {
         try{
             const user = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $pull: { friends: req.params.friendId } }
+                { $pull: { friends: req.params.friendId } },
+                { new: true }
             );
             if(user){
                 res.status(200).json(user);
